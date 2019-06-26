@@ -3,6 +3,8 @@ import { makeStyles, emphasize } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import APIURL from '../../helpers/environment'
+
 const useStyles = makeStyles(() => ({
 
   card: {
@@ -30,7 +32,7 @@ const MnemonicGet = () => {
   const classes = useStyles();
 
   const fetchMnemonic = () => {
-    let url = 'http://localhost:3000/home'
+    let url = `${APIURL}/home`
 
     fetch(url)
       .then((res) => res.json())

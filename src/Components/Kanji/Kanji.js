@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import APIURL from '../../helpers/environment'
+
 const useStyles = makeStyles(() => ({
 
   hide: {
@@ -61,7 +63,7 @@ const Kanji = () => {
 
 
 
-    let url = `http://localhost:3000/kanji/${daynum}`
+    let url = `${APIURL}/kanji/${daynum}`
 
     fetch(url)
       .then(res => res.json())

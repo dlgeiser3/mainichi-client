@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import APIURL from '../../helpers/environment'
 
 const MnemonicEdit = (props) => {
 
@@ -46,7 +47,7 @@ const MnemonicEdit = (props) => {
 
   const mnemonicUpdate = (event, mnemonic) => {
     event.preventDefault();
-    fetch(`http://localhost:3000/home/${mnemonicToUpdate.id}`, {
+    fetch(`${APIURL}/home/${mnemonicToUpdate.id}`, {
       method: 'PUT',
       body: JSON.stringify({ story: { text: editText } }),
       headers: new Headers({

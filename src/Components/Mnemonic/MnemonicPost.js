@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import APIURL from '../../helpers/environment'
+
 const useStyles = makeStyles(() => ({
 
   card: {
@@ -32,7 +34,7 @@ const MnemonicPost = (props) => {
 
   const classes = useStyles();
   const fetchMnemonic = () => {
-    let url = 'http://localhost:3000/home'
+    let url = `${APIURL}/home`
 
     fetch(url)
       .then((res) => res.json())

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
+import APIURL from '../../helpers/environment'
 
 const useStyles = makeStyles(() => ({
 
@@ -28,7 +29,7 @@ const Signup = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/user/create", {
+    fetch(`${APIURL}/user/create`, {
       method: 'POST',
       body: JSON.stringify({ user: { username: username, email: email, password: password } }),
       headers: new Headers({
