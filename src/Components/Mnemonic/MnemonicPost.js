@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
@@ -16,9 +16,10 @@ const useStyles = makeStyles(() => ({
   },
 
   button: {
-    marginTop: "2em",
+    marginTop: "1em",
     width: "10%",
     backgroundColor: "lightgray"
+
   },
   input: {
     marginTop: 10,
@@ -30,9 +31,11 @@ const useStyles = makeStyles(() => ({
 
 const MnemonicPost = (props) => {
   const [text, setText] = useState('');
+  const [kanji, setKanji] = useState('');
   const [mnemonic, setMnemonic] = useState([]);
 
   const classes = useStyles();
+  
   const fetchMnemonic = () => {
     let url = `${APIURL}/home`
 
@@ -46,12 +49,13 @@ const MnemonicPost = (props) => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    {!props.token && window.alert('Please login to post')}
     let url = 'http://localhost:3000/home'
 
     fetch(url, {
       method: 'POST',
-      body: JSON.stringify({ story: { text: text } }),
+      body: JSON.stringify({ story: { text: text, kanji: props.kanji.kanji.character } }),
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': props.token
@@ -61,14 +65,17 @@ const MnemonicPost = (props) => {
       .then(data => {
         console.log('DATA ==>', data)
         setText('')
+        setKanji('abc')
+        setKanji(props.kanji.kanji.character)
         fetchMnemonic();
       })
       .catch(err => console.log(err))
   }
 
+
+
   return (
     <div>
-      <br />
       <br />
       <form onSubmit={handleSubmit} >
         <TextField

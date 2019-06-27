@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Collapse from '@material-ui/core/Collapse';
 import { makeStyles } from '@material-ui/core/styles';
-
-// import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
-// import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 import APIURL from '../../helpers/environment'
 
@@ -13,29 +7,26 @@ const useStyles = makeStyles(() => ({
 
   hide: {
     height: '120px',
-    overflow: 'scroll'
+    overflow: 'scroll',
+    marginTop: '-.9em'
   },
 
   show: {
     display: 'block'
-  }
+  },
+
+  character: {
+    fontSize: '4em',
+    marginTop: '.5em',
+    marginBottom: '0em'
+  },
 
 }));
 
 
 
-const Kanji = () => {
+const Kanji = (props) => {
   const classes = useStyles();
-
-  const collapseToggle = () => {
-    this.classes.toggle("expand");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
-  }
 
   const [kanji, setKanji] = useState(
     {
@@ -67,14 +58,17 @@ const Kanji = () => {
 
     fetch(url)
       .then(res => res.json())
-      .then(data => setKanji(data))
+      .then(data => {
+        setKanji(data);
+        props.setKanji(data)
+      })
       .catch(err => console.log(err));
 
   }
   console.log(kanji)
   return (
     <div>
-      <h1>{kanji.kanji.character}</h1>
+      <h1 className={classes.character}>{kanji.kanji.character}</h1>
       <h3>Meaning: {kanji.kanji.meaning.english}</h3>
       <h3>Onyomi: {kanji.kanji.onyomi.katakana} ({kanji.kanji.onyomi.romaji})</h3>
       <h3>Kunyomi: {kanji.kanji.kunyomi.hiragana} ({kanji.kanji.kunyomi.romaji})</h3>

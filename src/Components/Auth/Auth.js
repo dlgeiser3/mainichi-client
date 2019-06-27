@@ -7,25 +7,18 @@ import Container from '@material-ui/core/Container';
 
 const Auth = (props) => {
 
-  const [sessionToken, setSessionToken] = useState('');
-
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setSessionToken(localStorage.getItem('token'));
-    }
-  }, [])
+  const [sessionToken, setSessionToken] = useState();
 
   const updateToken = (newToken) => {
     localStorage.setItem('token', newToken);
     setSessionToken(newToken);
-    console.log(sessionToken);
   }
 
 
   return (
     <Container>
-          <Login storeToken={props.storeToken} updateToken={updateToken} /> 
-          <Signup storeToken={props.storeToken} updateToken={updateToken} />               
+      <Login storeToken={props.storeToken} updateToken={updateToken} />
+      <Signup storeToken={props.storeToken} updateToken={updateToken} />
     </Container>
   )
 }
