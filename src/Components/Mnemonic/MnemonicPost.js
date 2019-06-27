@@ -51,7 +51,7 @@ const MnemonicPost = (props) => {
   const handleSubmit = (e) => {
     // e.preventDefault();
     {!props.token && window.alert('Please login to post')}
-    let url = 'http://localhost:3000/home'
+    let url = `${APIURL}/home`
 
     fetch(url, {
       method: 'POST',

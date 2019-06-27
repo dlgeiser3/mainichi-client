@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../../Contexts/UserContext'
-// import { makeStyles } from '@material-ui/core/styles';
-// import Paper from '@material-ui/core/Paper';
-// import Typography from '@material-ui/core/Typography';
-// import Modal from '@material-ui/core/Modal';
-// import Button from '@material-ui/core/Button';
-
 import Mnemonic from './Mnemonic';
 
 import APIURL from '../../helpers/environment'
