@@ -19,7 +19,7 @@ const MnemonicList = (props) => {
     fetch(url)
       .then((res) => res.json())
       .then(data => {
-        setMnemonic(data)
+        setMnemonic(data.reverse())
       })
       .catch(err => console.log(err))
   }
