@@ -50,7 +50,7 @@ const Signup = (props) => {
         
         <label htmlFor="email">Email</label>
         <br />
-        <input className={classes.input} onChange={(e) => setEmail(e.target.value)} name="email" value={email} />
+        <input className={classes.input} type='email' onChange={(e) => setEmail(e.target.value)} name="email" value={email} />
         <br />
 
         <label htmlFor="username">Username</label>
@@ -60,7 +60,7 @@ const Signup = (props) => {
 
         <label htmlFor="password">Password</label>
         <br />
-        <input className={classes.input} onChange={(e) => setPassword(e.target.value)} name="password" value={password} />
+        <input className={classes.input} type='password' onChange={(e) => setPassword(e.target.value)} name="password" value={password} />
         <br />
 
         <Button type="submit" className={classes.button}>Signup</Button>
