@@ -7,7 +7,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Kanji from './Components/Kanji/Kanji';
 import MnemonicPost from './Components/Mnemonic/MnemonicPost';
 import MnemonicList from './Components/Mnemonic/MnemonicsList';
-import UserContext from './Contexts/UserContext';
+
 
 
 
@@ -42,7 +42,6 @@ function App() {
         <Kanji setKanji={setKanji} />
         <MnemonicPost token={token} kanji={kanji} />
         <MnemonicList token={token}/>
-        {/* <MnemonicEdit token={token}/> */}
       </div>
     </UserProvider>
   );

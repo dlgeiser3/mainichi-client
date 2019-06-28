@@ -8,8 +8,7 @@ import APIURL from '../../helpers/environment'
 
 const MnemonicList = (props) => {
   const [mnemonic, setMnemonic] = useState([]);
-  const [kanji, setKanji] = useState('');
-  const user = useContext(UserContext)
+
 
   useEffect(() => fetchMnemonic(), []);
 

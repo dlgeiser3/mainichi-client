@@ -64,10 +64,12 @@ const MnemonicEdit = (props) => {
   const [newValue, setNewValue] = useState(props.text);
   const user = useContext(UserContext)
 
+  // useEffect(() => {fetchMnemonic()}, [mnemonic]); 
+
   const classes = useStyles();
 
   const fetchMnemonic = () => {
-    fetch('http://localhost:3000/home', {
+    fetch(`${APIURL}/home`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -89,8 +91,7 @@ const MnemonicEdit = (props) => {
         'Authorization': props.token
       })
     }).then((res) => {
-      fetchMnemonic();
-      setNewValue('')
+      setNewValue(newValue)
     })
   };
 
@@ -125,6 +126,7 @@ const MnemonicEdit = (props) => {
       {isEditing && <Button className={classes.button} onClick={(e) => {
         mnemonicUpdate(e)
         setIsEditing(false)
+        fetchMnemonic(e)
       }}>
         Save</Button>
 
@@ -132,6 +134,7 @@ const MnemonicEdit = (props) => {
 
       {isEditing && <Button className={classes.button} onClick={(e) => {
         mnemonicDelete(e)
+        fetchMnemonic(e)
       }}>Delete</Button>
       }
 
@@ -147,10 +150,3 @@ const MnemonicEdit = (props) => {
 
 export default MnemonicEdit;
 
-
-
-
-//Previous within paper tags
-{/* <h2>{props.kanji}</h2>{props.text}
-      <br />
-      <h5><em>Posted by: {props.ownerName}</em></h5> */}
