@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import APIURL from '../../helpers/environment'
 
 const useStyles = makeStyles(() => ({
 
-  hide: {
-    height: '120px',
-    overflow: 'scroll',
-    marginTop: '-.9em'
+  open: {
+    marginTop: '-1.5em',
+    display: 'block',
+
   },
 
-  show: {
-    display: 'block'
+  dropdown: {
+    cursor: 'pointer',
+  },
+
+  arrow: {
+    verticalAlign: 'middle',
   },
 
   character: {
@@ -27,7 +34,7 @@ const useStyles = makeStyles(() => ({
 
 const Kanji = (props) => {
   const classes = useStyles();
-
+  const [open, setOpen] = React.useState(true);
   const [kanji, setKanji] = useState(
     {
       kanji:
@@ -41,6 +48,10 @@ const Kanji = (props) => {
       ]
     }
   );
+
+  function handleClick() {
+    setOpen(!open);
+  }
 
   useEffect(() => fetchKanji(), []);
 
@@ -73,10 +84,12 @@ const Kanji = (props) => {
       <h3>Onyomi: {kanji.kanji.onyomi.katakana} ({kanji.kanji.onyomi.romaji})</h3>
       <h3>Kunyomi: {kanji.kanji.kunyomi.hiragana} ({kanji.kanji.kunyomi.romaji})</h3>
       <h3>Strokes: {kanji.kanji.strokes.count}</h3>
-      <h3>Examples:</h3>
-        <div className={classes.hide}><h3>{kanji.examples.map((example, index) =>
+      <h3 className={classes.dropdown} button onClick={handleClick}>Examples{open ? <ExpandLess className={classes.arrow} /> : <ExpandMore className={classes.arrow} />}</h3>
+      <Collapse in={!open} timeout="auto" unmountOnExit>
+        <div className={classes.open}><h3>{kanji.examples.map((example, index) =>
           <div key={index}>{example.japanese} - {example.meaning.english}</div>)}</h3>
         </div>
+      </Collapse>
     </div>
   )
 };

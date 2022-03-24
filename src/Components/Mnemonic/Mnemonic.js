@@ -105,7 +105,7 @@ const MnemonicEdit = (props) => {
         'Authorization': props.token
       })
     }).then((res) => {
-      fetchMnemonic()
+      fetchMnemonic(event)
     })
   };
 
